@@ -36,7 +36,9 @@ Curso de Introdução ao framework PHP Laravel. Nesse curso você vai aprender n
 
 ## <a name="parte1">1 - Introdução ao curso</a>
 
-
+- https://laravel.com/docs/5.3
+- https://getcomposer.org/
+- Git
 
 [Voltar ao Índice](#indice)
 
@@ -45,6 +47,26 @@ Curso de Introdução ao framework PHP Laravel. Nesse curso você vai aprender n
 
 ## <a name="parte2">2 - Instalação e Configuração</a>
 
+composer global require "laravel/installer" 
+
+composer create-project --prefer-dist laravel/laravel projeto1 "5.3"
+
+```
+Installing laravel/laravel (v5.3.0)
+  - Installing laravel/laravel (v5.3.0): Downloading (100%)
+Created project in cursoLaravel
+> php -r "file_exists('.env') || copy('.env.example', '.env');"
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 62 installs, 0 updates, 0 removals
+```
+
+Servidor embutido: php artisan serve
+
+```
+Laravel development server started on http://127.0.0.1:8000/
+
+```
 
 
 [Voltar ao Índice](#indice)
