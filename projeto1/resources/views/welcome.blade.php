@@ -85,6 +85,21 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <div>
+                    <h2>Teste com ROTAS: </h2>
+                    <form action="/contato" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="text" name="nome" placeholder="NOME /POST">
+                        <button>ENVIAR</button>
+                    </form>
+
+                    <form action="/contato" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="_method" value="put">
+                        <input type="text" name="nome" placeholder="NOME /PUT">
+                        <button>ENVIAR</button>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

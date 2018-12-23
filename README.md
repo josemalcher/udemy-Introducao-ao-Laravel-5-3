@@ -85,6 +85,48 @@ Laravel development server started on http://127.0.0.1:8000/
 
 ## <a name="parte4">4 - Configurando Rotas</a>
 
+- projeto1/routes/web.php
+
+```php
+<?php
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/contato/{id?}', function ($id = null) {
+    return "Contato id = $id";
+});
+
+Route::post('/contato', function () {
+    dd($_POST);
+    return "Contato POST";
+});
+
+Route::put('/contato', function () {
+    return "Contato PUT";
+});
+```
+
+- projeto1/resources/views/welcome.blade.php
+
+```php
+        <div>
+            <h2>Teste com ROTAS: </h2>
+            <form action="/contato" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="text" name="nome" placeholder="NOME /POST">
+                <button>ENVIAR</button>
+            </form>
+
+            <form action="/contato" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_method" value="put">
+                <input type="text" name="nome" placeholder="NOME /PUT">
+                <button>ENVIAR</button>
+            </form>
+        </div>
+```
 
 
 [Voltar ao Índice](#indice)
