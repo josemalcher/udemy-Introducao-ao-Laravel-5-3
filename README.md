@@ -279,7 +279,65 @@ Application key [base64:GZ/qNK8vd69WOmQwoodayk+SiHE/OWPODhh5Oxg6WF8=] set succes
 
 ## <a name="parte6">6 - Controllers</a>
 
+```
+> php artisan make:controller ContatoController
+Controller created successfully.
 
+```
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class ContatoController extends Controller
+{
+    public function index(){
+        return "ESSE é o index de ContatoCOntroller";
+    }
+
+    public function criar(Request $req){
+        //dd($req);
+        //dd($req['nome']);
+        dd($req->all());
+        return "Criando no CONTROLLER";
+    }
+
+    public function editar(){
+        return "EDITANDO no CONTROLLER";
+    }
+}
+
+```
+
+```php
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/contato/{id?}', ['uses'=>'ContatoController@index']);
+
+Route::post('/contato',['uses'=>'ContatoController@criar']);
+
+Route::put('/contato',['uses'=>'ContatoController@editar']);
+
+
+```
 
 [Voltar ao Índice](#indice)
 
