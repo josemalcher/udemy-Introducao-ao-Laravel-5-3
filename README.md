@@ -427,6 +427,52 @@ public function index(){
 
 ## <a name="parte9">9 - Model</a>
 
+```
+> php artisan make:model Contato -m
+Model created successfully.
+Created Migration: 2018_12_24_222554_create_contatos_table
+
+```
+
+- projeto1/app/Contato.php
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Contato extends Model
+{
+    public function lista(){
+        return (object)[
+            'nome'=>'José',
+            'tel'=>'91980800000'
+        ];
+    }
+}
+
+```
+
+- projeto1/app/Http/Controllers/ContatoController.php
+
+```php
+// (...)
+use Illuminate\Http\Request;
+use App\Contato;
+// (...)
+
+public function index(){
+        //Usando o Model
+        $contato = new Contato();
+        //dd($contato->lista());
+        $con = $contato->lista();
+        dd($con->nome);
+
+  return view('contato.index', compact('contatos','outroExemplo'));
+}
+```
 
 
 [Voltar ao Índice](#indice)
