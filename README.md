@@ -482,6 +482,65 @@ public function index(){
 
 ## <a name="parte10">10 - Migrations e SQLite</a>
 
+```
+>php artisan make:migration create_produtos_table --create=produtos
+
+Created Migration: 2018_12_24_230210_create_produtos_table
+
+```
+
+- projeto1/database/migrations/2018_12_24_230210_create_produtos_table.php
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateProdutosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('produtos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo');
+            $table->string('descricao');
+            $table->decimal('valor',5,2);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('produtos');
+    }
+}
+
+```
+
+```
+> php artisan migrate
+
+Migration table created successfully.
+Migrated: 2014_10_12_000000_create_users_table
+Migrated: 2014_10_12_100000_create_password_resets_table
+Migrated: 2018_12_24_222554_create_contatos_table
+Migrated: 2018_12_24_230210_create_produtos_table
+
+```
+
+
 
 
 [Voltar ao Índice](#indice)
