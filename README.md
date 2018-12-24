@@ -390,7 +390,35 @@ public function index(){
 
 ## <a name="parte8">8 - Blade Templates</a>
 
+- projeto1/resources/views/layout/site.blade.php
 
+```blade
+
+@include('layout._includes.topo')
+
+@yield('conteudo')
+
+@include('layout._includes.rodape')
+
+```
+
+- projeto1/resources/views/contato/index.blade.php
+
+```blade
+@extends('layout.site')
+
+@section('titulo', 'Contatos')
+
+@section('conteudo')
+    <h3>View Index</h3>
+
+    @foreach($contatos as $contato)
+        <p>{{$contato->nome}}</p>
+        <p>{{$contato->tel}}</p>
+    @endforeach
+
+@endsection
+```
 
 [Voltar ao Índice](#indice)
 
