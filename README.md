@@ -346,7 +346,42 @@ Route::put('/contato',['uses'=>'ContatoController@editar']);
 
 ## <a name="parte7">7 - View</a>
 
+- projeto1/app/Http/Controllers/ContatoController.php
 
+```php
+public function index(){
+
+        $contatos = [
+            (object)["nome"=>"Maria","tel"=> "91988881234"],
+            (object)["nome"=>"Joãoo","tel"=> "91999991234"]
+        ];
+        /*     <p>{{$contato->nome}}</p>
+        *      <p>{{$contato->tel}}</p>
+        */
+
+        $outroExemplo = [
+            ["nome"=>"Maria","tel"=> "91988881234"],
+            ["nome"=>"Joãoo","tel"=> "91999991234"]
+        ];
+        /*
+         *      <p>{{$contato['nome']}}</p>
+         *      <p>{{$contato['tel']}}</p>
+         * */
+
+        return view('contato.index', compact('contatos','outroExemplo'));
+    }
+```
+
+- projeto1/resources/views/contato/index.blade.php
+
+```php
+<h3>View index Contato</h3>
+
+@foreach($contatos as $contato)
+    <p>{{$contato->nome}}</p>
+    <p>{{$contato->tel}}</p>
+@endforeach
+```
 
 [Voltar ao Índice](#indice)
 
