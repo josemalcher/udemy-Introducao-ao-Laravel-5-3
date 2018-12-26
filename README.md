@@ -550,7 +550,7 @@ Migrated: 2018_12_24_230210_create_produtos_table
 
 ## <a name="parte11">11 - Laravel com Mysql</a>
 
-
+(Anterior)
 
 [Voltar ao Índice](#indice)
 
@@ -558,6 +558,81 @@ Migrated: 2018_12_24_230210_create_produtos_table
 
 
 ## <a name="parte12">12 - Criar registros com Tinker</a>
+
+```
+php artisan tinker
+Psy Shell v0.8.18 (PHP 7.2.1 — cli) by Justin Hileman
+New version is available (current: v0.8.18, latest: v0.9.9)
+```
+
+```
+>>> App\Contato::all();
+=> Illuminate\Database\Eloquent\Collection {#705
+     all: [],
+   }
+
+```
+
+```
+>>> $contato = new App\Contato();
+=> App\Contato {#712}
+>>> $contato->nome = "Jose tinker";
+=> "Jose tinker"
+>>> $contato->tel = "980808899";
+=> "980808899"
+>>> $contato->email = "contato@josemalcher.net";
+=> "contato@josemalcher.net"
+>>> $contato;
+=> App\Contato {#712
+     nome: "Jose tinker",
+     tel: "980808899",
+     email: "contato@josemalcher.net",
+   }
+>>>
+
+```
+
+- salvo no BD
+
+```
+>>> $contato->save();
+=> true
+
+```
+
+```
+>>> App\Contato::all();
+=> Illuminate\Database\Eloquent\Collection {#718
+     all: [
+       App\Contato {#719
+         id: 1,
+         nome: "Jose tinker",
+         tel: "980808899",
+         email: "contato@josemalcher.net",
+         created_at: "2018-12-26 00:13:12",
+         updated_at: "2018-12-26 00:13:12",
+       },
+     ],
+   }
+
+```
+
+- Deletar Registro
+
+```
+>>> $con = App\Contato::find(1);
+=> App\Contato {#725
+     id: 1,
+     nome: "Jose tinker",
+     tel: "980808899",
+     email: "contato@josemalcher.net",
+     created_at: "2018-12-26 00:13:12",
+     updated_at: "2018-12-26 00:13:12",
+   }
+>>> $con->delete();
+=> true
+
+```
 
 
 
