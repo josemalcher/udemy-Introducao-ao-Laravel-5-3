@@ -688,6 +688,8 @@ Controller created successfully.
 
 ## <a name="parte14">14 - Definindo as rotas do Crud</a>
 
+- projeto1/routes/web.php
+
 ```php
 /* CRUD CURSOS */
 Route::get('/admin/cursos',['as'=>'admin.cursos', 'uses'=>'Admin\CursoController@index']);
@@ -707,7 +709,75 @@ Route::get('/admin/cursos/deletar/{id}',['as'=>'admin.cursos.deletar', 'uses'=>'
 
 ## <a name="parte15">15 - Layout com Materialize e lista de registros</a>
 
+- MaterializeCSS: https://materializecss.com
 
+- projeto1/app/Http/Controllers/Admin/CursoController.php
+
+```php
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Curso; // MODEL
+class CursoController extends Controller
+{
+    public function index(){
+
+        $registros = Curso::all();
+
+        return view('admin.cursos.index', compact('registros'));
+    }
+}
+
+```
+
+- projeto1/resources/views/admin/cursos/index.blade.php
+
+```blade
+@extends('layout.site')
+
+@section('titulo', 'Cursos')
+
+@section('conteudo')
+    <div class="container">
+        <h3 class="center">Lista de Cursos</h3>
+        <div class="row">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Imagem</th>
+                        <th>Publicado</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($registros as $registro)
+                        <tr>
+                            <td>{{$registro->id}}</td>
+                            <td>{{$registro->titulo}}</td>
+                            <td>{{$registro->descricao}}</td>
+                            <td><img width="100" height="100" src="{{asset($registro->imagem)}}" alt="{{$registro->titulo}}"></td>
+                            <td>{{$registro->publicado}}</td>
+                            <td>
+                                <a class="btn deep-orange" href="{{route('admin.cursos.editar', $registro->id)}}">Editar</a>
+                                <a class="btn red" href="{{route('admin.cursos.deletar', $registro->id)}}">Deletar</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <dir class="row">
+            <a href="{{route('admin.cursos.adicionar')}}" class="btn blue">Adicionar</a>
+        </dir>
+    </div>
+@endsection
+```
 
 [Voltar ao Índice](#indice)
 
