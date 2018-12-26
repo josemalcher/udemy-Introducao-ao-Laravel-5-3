@@ -688,7 +688,17 @@ Controller created successfully.
 
 ## <a name="parte14">14 - Definindo as rotas do Crud</a>
 
+```php
+/* CRUD CURSOS */
+Route::get('/admin/cursos',['as'=>'admin.cursos', 'uses'=>'Admin\CursoController@index']);
+Route::get('/admin/cursos/adicionar',['as'=>'admin.cursos.adicionar', 'uses'=>'Admin\CursoController@adicionar']);
+Route::post('/admin/cursos/salvar',['as'=>'admin.cursos.salvar', 'uses'=>'Admin\CursoController@salvar']);
 
+Route::get('/admin/cursos/editar/{id}',['as'=>'admin.cursos.editar', 'uses'=>'Admin\CursoController@editar']);
+Route::post('/admin/cursos/atualizar/{id}',['as'=>'admin.cursos.atualizar', 'uses'=>'Admin\CursoController@atualizar']);
+
+Route::get('/admin/cursos/deletar/{id}',['as'=>'admin.cursos.deletar', 'uses'=>'Admin\CursoController@deletar']);
+```
 
 [Voltar ao Índice](#indice)
 
