@@ -643,6 +643,42 @@ New version is available (current: v0.8.18, latest: v0.9.9)
 
 ## <a name="parte13">13 - Iniciando um Crud com Model e Migration</a>
 
+```
+> php artisan make:model Curso -m
+Model created successfully.
+Created Migration: 2018_12_26_003303_create_cursos_table
+
+```
+
+- projeto1/database/migrations/2018_12_26_003303_create_cursos_table.php
+
+```php
+public function up()
+    {
+        Schema::create('cursos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('titulo');
+            $table->string('descricao');
+            $table->string('imagem');
+            $table->decimal('valoe',5,2);
+            $table->enum('publicado',['sim','nao'])->default('nao');
+            $table->timestamps();
+        });
+    }
+```
+
+```
+> php artisan migrate
+Migrated: 2018_12_26_003303_create_cursos_table
+
+```
+
+```
+> php artisan make:controller Admin\CursoController
+Controller created successfully.
+
+```
+
 
 
 [Voltar ao Índice](#indice)
