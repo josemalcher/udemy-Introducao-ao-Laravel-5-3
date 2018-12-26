@@ -863,6 +863,60 @@ class CursoController extends Controller
 
 ## <a name="parte17">17 - Método para salvar registros</a>
 
+- projeto1/app/Http/Controllers/Admin/CursoController.php
+
+```php
+public function salvar(Request $req){
+        $dados = $req->all();
+        //dd($dados);
+        /*
+          array:6 [▼
+          "_token" => "HuPlQ7yJKts1VztdzVnKOK7ImtI0i9UGM44ruuYi"
+          "titulo" => "Titul oteste "
+          "descricao" => "descrição teste"
+          "valor" => "1000"
+          "publicado" => "true"
+          "imagem" => UploadedFile {#354 ▶}
+        ]
+        */
+
+        if(isset($dados['publicado'])){
+            $dados['publicado'] = 'sim';
+        }
+
+        if($req->hasFile('imagem')){
+            $imagem = $req->file('imagem');
+            $num = rand(1111,9999);
+            $dir = "img/cursos/";
+            $ex = $imagem->guessClientExtension();
+            $nomeImagem = "imagem_".$num.".".$ex;
+            $imagem->move($dir,$nomeImagem);
+            $dados['imagem'] = $dir."/".$nomeImagem;
+        }
+
+        Curso::create($dados);
+        return redirect()->route('admin.cursos');
+
+    }
+```
+
+- projeto1/app/Curso.php
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Curso extends Model
+{
+    protected $fillable = [
+        'titulo', 'descricao', 'valor', 'imagem', 'publicado'
+    ];
+}
+
+```
 
 
 [Voltar ao Índice](#indice)
