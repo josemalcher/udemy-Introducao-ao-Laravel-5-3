@@ -926,6 +926,80 @@ class Curso extends Model
 
 ## <a name="parte18">18 - Editar Registros</a>
 
+- projeto1/app/Http/Controllers/Admin/CursoController.php
+
+```php
+
+    public function editar($id)
+    {
+        $registro = Curso::find($id);
+        return view('admin.cursos.editar', compact('registro'));
+    }
+    public function atualizar(Request $req, $id)
+    {
+        $dados = $req->all();
+        //dd($dados);
+        /*
+          array:6 [▼
+          "_token" => "HuPlQ7yJKts1VztdzVnKOK7ImtI0i9UGM44ruuYi"
+          "titulo" => "Titul oteste "
+          "descricao" => "descrição teste"
+          "valor" => "1000"
+          "publicado" => "true"
+          "imagem" => UploadedFile {#354 ▶}
+        ]
+        */
+
+        if(isset($dados['publicado'])){
+            $dados['publicado'] = 'sim';
+        }else{
+            $dados['publicado'] = 'nao';
+        }
+
+        if($req->hasFile('imagem')){
+            $imagem = $req->file('imagem');
+            $num = rand(1111,9999);
+            $dir = "img/cursos/";
+            $ex = $imagem->guessClientExtension();
+            $nomeImagem = "imagem_".$num.".".$ex;
+            $imagem->move($dir,$nomeImagem);
+            $dados['imagem'] = $dir."/".$nomeImagem;
+        }
+
+        Curso::find($id)->update($dados);
+        return redirect()->route('admin.cursos');
+
+    }
+```
+
+- projeto1/resources/views/admin/cursos/editar.blade.php
+
+```php
+@extends('layout.site')
+
+@section('titulo', 'Cursos')
+
+@section('conteudo')
+    <div class="container">
+        <h3 class="center">Editando Curso</h3>
+        <div class="row">
+            <form action="{{route('admin.cursos.atualizar', $registro->id)}}" method="post"
+                  enctype="multipart/form-data">
+                {{ csrf_field() }}
+
+                <input type="hidden" name="_method" value="put">
+
+                @include('admin.cursos._form')
+                <button class="btn deep-orange">ATUALIZAR</button>
+
+
+            </form>
+        </div>
+
+    </div>
+@endsection
+```
+
 
 
 [Voltar ao Índice](#indice)
