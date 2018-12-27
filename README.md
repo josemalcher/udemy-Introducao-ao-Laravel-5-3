@@ -1009,7 +1009,14 @@ class Curso extends Model
 
 ## <a name="parte19">19 - Deletar Registros</a>
 
-
+```php
+public function deletar($id)
+    {
+        Curso::find($id)->delete();
+        return redirect()->route('admin.cursos');
+    }
+}
+```
 
 [Voltar ao Índice](#indice)
 
