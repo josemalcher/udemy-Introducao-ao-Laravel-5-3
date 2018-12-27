@@ -1089,6 +1089,75 @@ class HomeController extends Controller
 
 ## <a name="parte21">21 - Seeders</a>
 
+- projeto1/database/seeds/UsuarioSeeder.php
+
+```php
+<?php
+
+use Illuminate\Database\Seeder;
+use App\User;
+
+class UsuarioSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $dados = [
+          'name'=> 'josemalcher',
+          'email'=> 'contato@josemalcher.net',
+          'password'=>bcrypt("123456"),
+        ];
+        if(User::where('email','=',$dados['email'])->count()){
+            $usuario = User::where('email','=',$dados['email'])->first();
+            $usuario->update($dados);
+            echo "usuario Altereado";
+        }else{
+            User::create($dados);
+            echo "Usuario Criado";
+        }
+    }
+}
+
+```
+
+- projeto1/database/seeds/DatabaseSeeder.php
+
+```php
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->call(UsuarioSeeder::class);
+    }
+}
+
+```
+
+
+```
+php artisan db:seed
+Seeding: UsuarioSeeder
+Usuario Criado
+
+# ou
+
+php artisan db:seed --class=UsuarioSeeder
+usuario Altereado
+
+```
 
 
 [Voltar ao Índice](#indice)
