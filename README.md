@@ -1217,6 +1217,89 @@ class LoginController extends Controller
 
 ## <a name="parte23">23 - Sistema de Login - Parte 2</a>
 
+```php
+<?php
+Route::get('/', ['as' => 'site.home', 'uses' => 'Site\HomeController@index']);
+
+Route::get('/login', ['as' => 'site.login', 'uses' => 'Site\LoginController@index']);
+Route::get('/login/sair', ['as' => 'site.login.sair', 'uses' => 'Site\LoginController@sair']);
+Route::post('/login/entrar', ['as' => 'site.login.entrar', 'uses' => 'Site\LoginController@entrar']);
+
+Route::group(['middleware' => 'auth'], function () {
+    /* CRUD CURSOS */
+    Route::get('/admin/cursos', ['as' => 'admin.cursos', 'uses' => 'Admin\CursoController@index']);
+    Route::get('/admin/cursos/adicionar', ['as' => 'admin.cursos.adicionar', 'uses' => 'Admin\CursoController@adicionar']);
+    Route::post('/admin/cursos/salvar', ['as' => 'admin.cursos.salvar', 'uses' => 'Admin\CursoController@salvar']);
+
+    Route::get('/admin/cursos/editar/{id}', ['as' => 'admin.cursos.editar', 'uses' => 'Admin\CursoController@editar']);
+    Route::put('/admin/cursos/atualizar/{id}', ['as' => 'admin.cursos.atualizar', 'uses' => 'Admin\CursoController@atualizar']);
+
+    Route::get('/admin/cursos/deletar/{id}', ['as' => 'admin.cursos.deletar', 'uses' => 'Admin\CursoController@deletar']);
+});
+
+Route::get('/contato/{id?}', ['uses' => 'ContatoController@index']);
+
+Route::post('/contato', ['uses' => 'ContatoController@criar']);
+
+Route::put('/contato', ['uses' => 'ContatoController@editar']);
+
+
+```
+
+- projeto1/resources/views/layout/_includes/topo.blade.php
+
+```blade
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    {{--<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>--}}
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@yield('titulo')</title>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="nav-wrapper deep-orange">
+            <a href="#!" class="brand-logo">Curso de Laravel</a>
+            <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+
+                @if(Auth::guest())
+                    <li><a href="{{route('site.login')}}">Login</a></li>
+                @else
+                    <li><a href="{{route('admin.cursos')}}">Cursos</a></li>
+                    <li><a href="#">{{Auth::user()->name}}</a></li>
+                    <li><a href="{{route('site.login.sair')}}">SAIR</a></li>
+                @endif
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile">
+        <li><a href="/">Home</a></li>
+
+        @if(Auth::guest())
+            <li><a href="{{route('site.login')}}">Login</a></li>
+        @else
+            <li><a href="{{route('admin.cursos')}}">Cursos</a></li>
+            <li><a href="#">{{Auth::user()->name}}</a></li>
+            <li><a href="{{route('site.login.sair')}}">SAIR</a></li>
+        @endif
+    </ul>
+</header>
+```
 
 
 [Voltar ao Índice](#indice)
