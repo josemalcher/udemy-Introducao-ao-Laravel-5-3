@@ -1318,6 +1318,25 @@ Route::put('/contato', ['uses' => 'ContatoController@editar']);
 
 ## <a name="parte25">25 - Paginação com Laravel</a>
 
+- projeto1/app/Http/Controllers/Site/HomeController.php
+
+```php
+public function index()
+    {
+        //$cursos = Curso::all();
+        //Páginação (3) por página
+        $cursos = Curso::paginate(3);
+        return view('home', compact('cursos'));
+    }
+```
+
+- projeto1/resources/views/home.blade.php
+
+```blade
+        <div class="row" align="center">
+            {{$cursos->links()}}
+        </div>
+```
 
 
 [Voltar ao Índice](#indice)
