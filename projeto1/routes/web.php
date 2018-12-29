@@ -16,6 +16,9 @@
 });*/
 Route::get('/',['as'=>'site.home', 'uses'=>'Site\HomeController@index']);
 
+Route::get('/login', ['as'=>'site.home','uses'=>'Site\LoginController@index']);
+Route::post('/login/entrar', ['as'=>'site.home.entrar','uses'=>'Site\LoginController@entrar']);
+
 
 Route::get('/contato/{id?}', ['uses'=>'ContatoController@index']);
 
