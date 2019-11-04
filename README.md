@@ -99,7 +99,7 @@ Route::get('/contato/{id?}', function ($id = null) {
 });
 
 Route::post('/contato', function () {
-    dd($_POST);
+    dd($_POST); // melhor que o vardump()
     return "Contato POST";
 });
 

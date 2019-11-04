@@ -12,7 +12,8 @@
       <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/jakub-onderka/php-console-highlighter" />
-      <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/jeremeamia/SuperClosure" />
+      <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/jeremeamia/superclosure" />
+      <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/kylekatarnls/update-helper" />
       <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/projeto1/vendor/mockery/mockery" />
