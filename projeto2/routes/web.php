@@ -16,18 +16,22 @@ Route::get('/', function () {
 });
 
 // ? pode ser vazio
-Route::get('/contato/{id?}', function ($id = null) {
+/*Route::get('/contato/{id?}', function ($id = null) {
     return "Contato teste id =  $id";
-});
+});*/
 
-Route::post('/contato/', function () {
-    //var_dump($_POST);
-    dd($_POST); // testando algo
-    return "Contato POST";
-});
+//Route::post('/contato/', function () {
+//    //var_dump($_POST);
+//    dd($_POST); // testando algo
+//    return "Contato POST";
+//});
 
-Route::put('/contato/', function () {
-    var_dump($_POST);
-    //dd($_POST); // testando algo
-    return "Contato POST";
-});
+//Route::put('/contato/', function () {
+//    var_dump($_POST);
+//    //dd($_POST); // testando algo
+//    return "Contato POST";
+//});
+Route::get('/contato/{id?}', ['uses'=> 'ContatoController@index']);
+Route::post('/contato', ['uses'=> 'ContatoController@criar']);
+Route::put('/contato}', ['uses'=> 'ContatoController@editar']);
+
