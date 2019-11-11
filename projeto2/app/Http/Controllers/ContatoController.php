@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Contato;
 
 class ContatoController extends Controller
 {
@@ -12,10 +13,15 @@ class ContatoController extends Controller
 //            ["nome"=>"Maria", "tel"=>"91989898989"],
 //            ["nome"=>"Jose", "tel"=>"88446655112"]
 //        ];
-        $contatos = [
-            (object)["nome"=>"Maria", "tel"=>"91989898989"],
-            (object)["nome"=>"Jose", "tel"=>"88446655112"]
-        ];
+//        $contatos = [
+//            (object)["nome"=>"Maria", "tel"=>"91989898989"],
+//            (object)["nome"=>"Jose", "tel"=>"88446655112"]
+//        ];
+        $contato = new Contato();
+
+        //dd($contato->lista());
+        dd($contato->lista()->nome);
+
         return view('contato.index', compact('contatos'));
     }
 
